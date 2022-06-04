@@ -14,7 +14,7 @@ def init():
     gluOrtho2D(-30.0, 30.0, -30.0, 30.0)
     glClearColor(0.9, 0.9, 0.9, 0.0)
     
-
+# Generating random colors.
 def random_color():
     x = random.randint(0, 255) / 255
     y = random.randint(0, 255) / 255
@@ -23,7 +23,6 @@ def random_color():
     return color
 
 colors_list= []
-
 for n in range(len(p.chair_faces_vector4)):
     colors_list.append(random_color())
 
@@ -31,6 +30,7 @@ for n in range(len(p.chair_faces_vector4)):
 def draw():
     glClear(GL_COLOR_BUFFER_BIT)
     
+    # Arches start here.
     glBegin(GL_QUADS)
     for face in p.chair_faces_vector4:
         x = 0
@@ -46,6 +46,11 @@ def draw():
             glVertex3fv(p.chair_verticies_vector3[i])
 
     glEnd()
+    # Arches End here.
+
+    # Body to be continued here...
+
+    
     glFlush()
 
 def main():
