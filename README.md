@@ -1,5 +1,6 @@
 # Automotive simulation using OpenGL python
-This repository is for a Graphics course final project. The project is to develop an Automotive simulation using OpenGl.
+This repository is for a Graphics course final project. The project is to develop an Automotive simulation using OpenGl.\n
+
 ![Automotive-simulation](image.PNG)
 
 |   Team             | ID          |
