@@ -4,4 +4,4 @@ This repository is for a Graphics course final project. The project is to develo
 |   Team             | ID          |
 |:------------------:|:-----------:|
 | Tesfaye Adugna     |UGR/4709/12  |
-| Kenna Tefera       |UGR/1307/12  |
+| Kenna Tefera       |UGR/0713/12  |
