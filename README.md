@@ -5,6 +5,11 @@ This repository is for a Graphics course final project. The project is to develo
 ## Screenshot of the car we downloaded from free3d.com
 ![Automotive-simulation](image.PNG)
 
+## important youtube linkes that helps us to load the blender files into our opengl project.
+https://www.youtube.com/watch?v=DKt4HRBqH1I&list=PL1P11yPQAo7opIg8r-4BMfh1Z_dCOfI0y&index=15
+
+https://www.youtube.com/watch?v=zi8-XFTR-Sc
+
 |   Team             | ID          |
 |:------------------:|:-----------:|
 | Tesfaye Adugna     |UGR/4709/12  |
