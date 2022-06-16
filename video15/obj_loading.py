@@ -92,7 +92,7 @@ glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, chibi_buffer.itemsize * 8, ctype
 glEnableVertexAttribArray(2)
 
 textures = glGenTextures(2)
-# load_texture("F:/AAU/3rd-year/3rd-year-2nd-semester/Graphics/Graphics-lab-works/learn From Video/video15/meshes/untitled2.png", textures[0])
+load_texture("E:/video15/meshes/car_texture.png", textures[0])
 
 glUseProgram(shader)
 glClearColor(0, 0.1, 0.1, 1)
