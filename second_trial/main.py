@@ -52,7 +52,7 @@ glfw.make_context_current(win)
 
 shaders=compileProgram(compileShader(vertex_src,GL_VERTEX_SHADER),compileShader(fragment_src,GL_FRAGMENT_SHADER))
 
-indices,data=ObjLoader.load_model("E:/graphics_project/Automotive-simulation-Graphics/second_trial/Car.obj")
+indices,data=ObjLoader.load_model("F:/AAU/3rd-year/3rd-year-2nd-semester/Graphics/Automotive-simulation-Graphics/second_trial/Car.obj")
 
 print(indices)
 print(data)
@@ -74,7 +74,7 @@ glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_REPEAT)
 glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR)
 glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR)
 
-image=Image.open("E:/graphics_project/Automotive-simulation-Graphics/second_trial/car_texture.png")
+image=Image.open("F:/AAU/3rd-year/3rd-year-2nd-semester/Graphics/Automotive-simulation-Graphics/second_trial/car_texture.png")
 
 image=image.transpose(Image.FLIP_TOP_BOTTOM)
 image_data=image.convert("RGBA").tobytes()
