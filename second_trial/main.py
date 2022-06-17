@@ -1,4 +1,5 @@
 import glfw
+import pygame
 from OpenGL.GL import *
 from OpenGL.GL.shaders import compileShader,compileProgram
 import numpy as np
@@ -76,7 +77,7 @@ glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR)
 
 image=Image.open("F:/AAU/3rd-year/3rd-year-2nd-semester/Graphics/Automotive-simulation-Graphics/second_trial/car_texture.png")
 
-image=image.transpose(Image.FLIP_TOP_BOTTOM)
+image=image.transpose(Image.Transpose.FLIP_TOP_BOTTOM)
 image_data=image.convert("RGBA").tobytes()
 glTexImage2D(GL_TEXTURE_2D,0,GL_RGBA,image.width,image.height,0,GL_RGBA,GL_UNSIGNED_BYTE,image_data)
 
@@ -85,6 +86,8 @@ glVertexAttribPointer(0,3,GL_FLOAT,GL_FALSE,32,ctypes.c_void_p(0))
 
 glEnableVertexAttribArray(1)
 glVertexAttribPointer(1,2,GL_FLOAT,GL_FALSE,32,ctypes.c_void_p(12))
+
+
 
 model_loc=glGetUniformLocation(shaders,"model")
 proj_loc=glGetUniformLocation(shaders,"projection")
@@ -107,13 +110,14 @@ glUseProgram(shaders)
 
 glUniformMatrix4fv(proj_loc,1,GL_FALSE,projection)
 glUniformMatrix4fv(view_loc,1,GL_FALSE,look_mat)
+pygame.init()
 while not glfw.window_should_close(win):
     glfw.poll_events()
     glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
     #glDrawArrays(GL_QUADS,0,4)
-    rotx=pyrr.Matrix44.from_x_rotation(0*glfw.get_time())
-    roty=pyrr.Matrix44.from_y_rotation(1.5*glfw.get_time())
-    rotz = pyrr.Matrix44.from_z_rotation(0*glfw.get_time())
+    rotx=pyrr.Matrix44.from_x_rotation(0*pygame.time.get_ticks())
+    roty=pyrr.Matrix44.from_y_rotation(0.001 * pygame.time.get_ticks())
+    rotz = pyrr.Matrix44.from_z_rotation(0*pygame.time.get_ticks())
     rot_mat=roty*rotx*rotz
     model_mat=pyrr.matrix44.multiply(rot_mat,trans_mat)
     glUniformMatrix4fv(model_loc,1,GL_FALSE,model_mat)
