@@ -23,7 +23,7 @@ class ObjLoader:
     # a function to create a sorted vertex buffer to use it with glDrawArrays function
     # this function checks the verteces and sorts them according to their catagories.
     @staticmethod
-    def create_sorted_vertex_buffer(indices_data, vertices, textures, normals) -> None:
+    def createSortedVertexBuffer(indices_data, vertices, textures, normals) -> None:
 
         for i, ind in enumerate(indices_data):
             # sort the vertex coordinates
@@ -73,8 +73,8 @@ class ObjLoader:
 
                 line = f.readline()
 
-        ObjLoader.create_sorted_vertex_buffer(all_indices, vert_coords, tex_coords, norm_coords)
+        ObjLoader.createSortedVertexBuffer(all_indices, vert_coords, tex_coords, norm_coords)
         buffer = ObjLoader.buffer.copy()
         ObjLoader.buffer = []
 
-        return np.array(indices, dtype='uint32'), np.array(buffer, dtype='float32')
+        return np.array(indices, dtype = 'uint32'), np.array(buffer, dtype = 'float32')

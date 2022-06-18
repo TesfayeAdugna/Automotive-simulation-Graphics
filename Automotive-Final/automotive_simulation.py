@@ -97,9 +97,9 @@ class Automotive:
         glUniformMatrix4fv(proj_loc, 1, GL_FALSE, projection)
         glUniformMatrix4fv(view_loc, 1, GL_FALSE, look_mat)
 
-        rotx = pyrr.Matrix44.from_x_rotation(0)
-        roty = pyrr.Matrix44.from_y_rotation(y)
-        rotz = pyrr.Matrix44.from_z_rotation(z)
+        rotx = pyrr.Matrix44.from_x_rotation(0 * pygame.time.get_ticks())
+        roty = pyrr.Matrix44.from_y_rotation(y * 0.0005 * pygame.time.get_ticks())
+        rotz = pyrr.Matrix44.from_z_rotation(z * 0.0005 * pygame.time.get_ticks())
         rot_mat = rotx * roty * rotz
         model_mat = pyrr.matrix44.multiply(rot_mat, trans_mat)
         glUniformMatrix4fv(model_loc, 1, GL_FALSE, model_mat)
@@ -108,7 +108,7 @@ class Automotive:
     # The main function holds the main loop for keeping the pygame window open
     # and managing the key presses.
     def main(self) -> None:
-        y = 1
+        y = 0
         z = 0
         self.init()
         while True:
