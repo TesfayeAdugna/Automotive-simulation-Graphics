@@ -18,7 +18,7 @@ class Automotive:
     # This function reads the shader files and returns their contents as string.
     def getFileContents(self, filename) -> str:
 
-        p = os.path.join(os.getcwd(), "Final/shaders", filename)
+        p = os.path.join(os.getcwd(), "Automotive-Final/shaders", filename)
         return open(p, 'r').read()
 
     # This function initializes and creates the pygame window.
@@ -33,7 +33,7 @@ class Automotive:
     # This function parses the image using the PIL library, and converts it into RGBA
     # color and binds it with the 3D object.
     def textureImage(self):
-        image = Image.open("Final/texture/car_texture.png")
+        image = Image.open("Automotive-Final/texture/car_texture.png")
         image = image.transpose(Image.Transpose.FLIP_TOP_BOTTOM)
         image_data = image.convert("RGBA").tobytes()
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, image.width, image.height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image_data)
@@ -43,7 +43,7 @@ class Automotive:
     # pressed keys and rotates the object based on that value. 
     def draw(self, x, y, z) -> None:
 
-        indices, data = ObjLoader.load_model("Final/object/Car.obj")
+        indices, data = ObjLoader.load_model("Automotive-Final/object/Car.obj")
 
         buffer = glGenBuffers(1)
         glBindBuffer(GL_ARRAY_BUFFER, buffer)
