@@ -1,6 +1,10 @@
 # Automotive simulation using OpenGL python
-This repository is for a Graphics course final project. The project is to develop an Automotive simulation using OpenGl. Car Folder contains blend, obj and material files of our first blender trial car. The ziped folder contains a 3d car model downloaded from some website. (free3d.com)
-## Screenshot of the car folder blender object 
+This repository is for a Graphics course final project. The project is to develop an Automotive simulation using OpenGl. The Finalized project is in the Final folder above. The Trial folder contains other folders we have been trying on. There are photos and codes. It shows how the project built from first trying it to generate the points on our own to developing it in blender and loading the object file.
+## Here is The final Output.
+![final-output-car](inopengl.PNG)
+## Here is The final project car developed in Blender.
+![final-car-in-blender](inblender.PNG)
+## Screenshot of the car folder blender object. we built this car while learning blender for the first time. 
 ![New-car](Trials/newcar.PNG)
 ## Screenshot of the car we downloaded from free3d.com
 ![Automotive-simulation](Trials/image.PNG)
