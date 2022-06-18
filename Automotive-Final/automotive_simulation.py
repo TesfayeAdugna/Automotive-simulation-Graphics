@@ -41,7 +41,7 @@ class Automotive:
     # This function draws the object based on the provided indexes and datas from the
     # object loader. It takes rotational direction values for x, y and z based on the
     # pressed keys and rotates the object based on that value. 
-    def draw(self, x, y, z) -> None:
+    def draw(self, y, z) -> None:
 
         indices, data = ObjLoader.load_model("Automotive-Final/object/Car.obj")
 
@@ -97,7 +97,7 @@ class Automotive:
         glUniformMatrix4fv(proj_loc, 1, GL_FALSE, projection)
         glUniformMatrix4fv(view_loc, 1, GL_FALSE, look_mat)
 
-        rotx = pyrr.Matrix44.from_x_rotation(x)
+        rotx = pyrr.Matrix44.from_x_rotation(0)
         roty = pyrr.Matrix44.from_y_rotation(y)
         rotz = pyrr.Matrix44.from_z_rotation(z)
         rot_mat = rotx * roty * rotz
@@ -108,7 +108,6 @@ class Automotive:
     # The main function holds the main loop for keeping the pygame window open
     # and managing the key presses.
     def main(self) -> None:
-        x = 0
         y = 1
         z = 0
         self.init()
@@ -128,7 +127,7 @@ class Automotive:
                         z -= 0.05
 
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
-            self.draw(x, y, z)
+            self.draw(y, z)
             pygame.display.flip()
             pygame.time.wait(10)
 
