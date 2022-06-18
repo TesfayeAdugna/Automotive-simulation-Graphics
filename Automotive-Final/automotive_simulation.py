@@ -4,7 +4,7 @@ from OpenGL.GL import *
 from pygame.locals import *
 from OpenGL.GL import *
 from OpenGL.GLU import *
-from OpenGL.GL.shaders import compileShader,compileProgram
+from OpenGL.GL.shaders import compileShader, compileProgram
 import pyrr
 from PIL import Image
 from obj_loader import ObjLoader
@@ -43,15 +43,15 @@ class Automotive:
     # pressed keys and rotates the object based on that value. 
     def draw(self, y, z) -> None:
 
-        indices, data = ObjLoader.load_model("Automotive-Final/object/Car.obj")
+        indexes, datas = ObjLoader.load_model("Automotive-Final/object/Car.obj")
 
         buffer = glGenBuffers(1)
         glBindBuffer(GL_ARRAY_BUFFER, buffer)
-        glBufferData(GL_ARRAY_BUFFER, data.nbytes, data, GL_STATIC_DRAW)
+        glBufferData(GL_ARRAY_BUFFER, datas.nbytes, datas, GL_STATIC_DRAW)
 
-        ibuffer = glGenBuffers(1)
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibuffer)
-        glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.nbytes, indices, GL_STATIC_DRAW)
+        i_buffer = glGenBuffers(1)
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, i_buffer)
+        glBufferData(GL_ELEMENT_ARRAY_BUFFER, indexes.nbytes, indexes, GL_STATIC_DRAW)
 
         texture = glGenTextures(1)
         glBindTexture(GL_TEXTURE_2D, texture)
@@ -74,41 +74,41 @@ class Automotive:
         fragment_src = self.getFileContents("fragment.shader")
 
         glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
-        shaders = compileProgram(compileShader(vertex_src, GL_VERTEX_SHADER), compileShader(fragment_src, GL_FRAGMENT_SHADER))
+        shader = compileProgram(compileShader(vertex_src, GL_VERTEX_SHADER), compileShader(fragment_src, GL_FRAGMENT_SHADER))
 
-        model_loc = glGetUniformLocation(shaders, "model")
-        proj_loc = glGetUniformLocation(shaders, "projection")
-        view_loc = glGetUniformLocation(shaders, "view")
+        model_location = glGetUniformLocation(shader, "model")
+        projection_location = glGetUniformLocation(shader, "projection")
+        view_location = glGetUniformLocation(shader, "view")
 
-        trans_mat = pyrr.matrix44.create_from_translation(pyrr.Vector3([0, 0, 0]))
+        trans_matrix = pyrr.matrix44.create_from_translation(pyrr.Vector3([0, 0, 0]))
 
         projection = pyrr.matrix44.create_perspective_projection_matrix(45, 1366/768, 0.1, 100)
 
         pyrr.Matrix44.from_scale(pyrr.Vector3([3, 3, 3]))
         pyrr.matrix44.create_from_translation(pyrr.Vector3([0, -1, 0]))
 
-        look_mat = pyrr.matrix44.create_look_at(pyrr.Vector3([-5, 1.5, 0]),pyrr.Vector3([0, 0, 0]),pyrr.Vector3([0, 1, 0]))
+        look_matrix = pyrr.matrix44.create_look_at(pyrr.Vector3([-5, 1.5, 0]),pyrr.Vector3([0, 0, 0]),pyrr.Vector3([0, 1, 0]))
         glClearColor(0, 0, 0.2, 1)
         glEnable(GL_DEPTH_TEST)
         glEnable(GL_BLEND)
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA)
-        glUseProgram(shaders)
+        glUseProgram(shader)
 
-        glUniformMatrix4fv(proj_loc, 1, GL_FALSE, projection)
-        glUniformMatrix4fv(view_loc, 1, GL_FALSE, look_mat)
+        glUniformMatrix4fv(projection_location, 1, GL_FALSE, projection)
+        glUniformMatrix4fv(view_location, 1, GL_FALSE, look_matrix)
 
-        rotx = pyrr.Matrix44.from_x_rotation(0 * pygame.time.get_ticks())
-        roty = pyrr.Matrix44.from_y_rotation(y * 0.0005 * pygame.time.get_ticks())
-        rotz = pyrr.Matrix44.from_z_rotation(z * 0.0005 * pygame.time.get_ticks())
-        rot_mat = rotx * roty * rotz
-        model_mat = pyrr.matrix44.multiply(rot_mat, trans_mat)
-        glUniformMatrix4fv(model_loc, 1, GL_FALSE, model_mat)
-        glDrawArrays(GL_TRIANGLES, 0, len(indices))
+        rotate_x = pyrr.Matrix44.from_x_rotation(0 * pygame.time.get_ticks())
+        rotate_y = pyrr.Matrix44.from_y_rotation(y * 0.0005 * pygame.time.get_ticks())
+        rotate_z = pyrr.Matrix44.from_z_rotation(z * 0.0005 * pygame.time.get_ticks())
+        rot_mat = rotate_x * rotate_y * rotate_z
+        model_mat = pyrr.matrix44.multiply(rot_mat, trans_matrix)
+        glUniformMatrix4fv(model_location, 1, GL_FALSE, model_mat)
+        glDrawArrays(GL_TRIANGLES, 0, len(indexes))
 
     # The main function holds the main loop for keeping the pygame window open
     # and managing the key presses.
     def main(self) -> None:
-        y = 0
+        y = 0.05
         z = 0
         self.init()
         while True:
